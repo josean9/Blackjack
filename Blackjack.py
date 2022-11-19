@@ -1,4 +1,5 @@
 from random import choice, sample, shuffle 
+import random
 cartas = { 
     chr(0x1f0a1): 11, 
     chr(0x1f0a2): 2, 
@@ -16,14 +17,24 @@ cartas = {
 } 
 for carta,valor in cartas.items():
     print("A la carta {}, se le atribuye el valor {}".format(carta, valor))
-listaDeCartas = list(cartas.keys())
-def inicio_de_juego():
+listaDeCartas = list(cartas.keys()) 
+print("La lista de cartas es: {}".format(listaDeCartas))   
+def pedir_carta():
+    eleccion1 = random.randint(1, 13)
+    eleccion2 = random.randint(1, 13)
+    while eleccion1 == eleccion2:
+        eleccion2 = random.randint(1, 13)
+    else:
+        pass
+    carta1 = list(cartas.keys())[eleccion1]
+    valor1 = list(cartas.values())[eleccion1]
+    carta2 = list(cartas.keys())[eleccion2]
+    valor2 = list(cartas.values())[eleccion2]
+    print(carta1, valor1)
+    print("Sus dos cartas son",carta1, carta2)
+    return "Cuyo valor es:", (valor1 + valor2)
 
-    shuffle(listaDeCartas)
-def coger_cartas():
-    pass
-
-print("La lista de cartas es: {}".format(listaDeCartas))
-
+print(pedir_carta())
+"""print(coger_cartas())"""
 """choice(cartas)
 sample(cartas, 5) """
