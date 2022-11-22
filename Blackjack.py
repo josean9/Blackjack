@@ -19,33 +19,20 @@ for carta,valor in cartas.items():
     print("A la carta {}, se le atribuye el valor {}".format(carta, valor))
 listaDeCartas = list(cartas.keys()) 
 print("La lista de cartas es: {}".format(listaDeCartas))   
-def pedir_carta():
-    eleccion1 = random.randint(1, 13)
-    eleccion2 = random.randint(1, 13)
-    while eleccion1 == eleccion2:
-        eleccion2 = random.randint(1, 13)
-    else:
-        pass
-    carta1 = list(cartas.keys())[eleccion1]
-    valor1 = list(cartas.values())[eleccion1]
-    carta2 = list(cartas.keys())[eleccion2]
-    valor2 = list(cartas.values())[eleccion2]
-    print(carta1, valor1)
-    print("Sus dos cartas son",carta1, carta2)
-    print(cartas)
-    return "Cuyo valor es:", (valor1 + valor2)
 def carta_crupier():
     carta3 = listaDeCartas[2]
     valor3 = cartas[carta3]
     carta4 = listaDeCartas[3]
     valor4 = cartas[carta4]
-    return carta3, carta4,"cuyo valor es:", (valor3 + valor4)
+    valorTotalCrupier = valor3 + valor4
+    return carta3, carta4,"cuyo valor es:", (valorTotalCrupier)
 def pedir_carta2():
     carta1 = listaDeCartas[0]
     valor1 = cartas[carta1]
     carta2 = listaDeCartas[1]
     valor2 = cartas[carta2]
-    return carta1, carta2,"cuyo valor es:", (valor1 + valor2)
+    valorTotalMio = valor1 + valor2
+    return carta1, carta2,"cuyo valor es:", (valorTotalMio)
 def pedir_tercera_carta():
     carta1 = listaDeCartas[0]
     valor1 = cartas[carta1]
@@ -53,7 +40,25 @@ def pedir_tercera_carta():
     valor2 = cartas[carta2]
     carta3 = listaDeCartas[4]
     valor3 = cartas[carta3]
-    return carta1, carta2, carta3,"cuyo valor es:", (valor1 + valor2 + valor3)
+    valorConTresCartas = valor1 + valor2 + valor3
+    return carta1, carta2, carta3,"cuyo valor es:", (valorConTresCartas)
+def volverAJugar():
+    print("¿Quieres volver a jugar?")
+    print("1. Si")
+    print("2. No")
+    eleccion3 = input("Elige una opción: ")
+    try:
+        eleccion3 = int(eleccion3)
+    except:
+        print("No has introducido un número")
+        volverAJugar()
+    if eleccion3 == 1:
+        juego()
+    elif eleccion3 == 2:
+        return "El juego ha terminado"
+    else:
+        print("Introduzca una opción válida")
+        volverAJugar()
 def juego():
     print("Bienvenido al juego de Blackjack")
     print("¿Quieres jugar?")
@@ -62,7 +67,7 @@ def juego():
     eleccion = input("Elige una opción: ")
     try:
         eleccion = int(eleccion)
-    except ValueError:
+    except:
         print("No has introducido un número")
         juego()
     if eleccion == 1:
@@ -74,12 +79,15 @@ def juego():
         print("2. No")
         eleccion2 = int(input("Elige una opción: "))
         if eleccion2 == 1:
-            print("Sus dos cartas son",pedir_tercera_carta())
+            print("Sus tres cartas son",pedir_tercera_carta())
         else:
-            pass
+            print("Quiere volver a jugar?")
+            print("1. Si")
+            print("2. No")
+            
+    elif eleccion == 2:
+        return "El juego ha terminado"
     else:
-        pass
+        print("Introduzca una opción válida")
+        juego()
 print(juego())
-"""print(coger_cartas())"""
-"""choice(cartas)
-sample(cartas, 5) """
